@@ -61,13 +61,16 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
             <input 
               type="date" 
               className="border p-0.5 rounded w-full sm:w-32 text-[10px] print:hidden flex-1" 
-              value={pickupDate}
               onChange={(e) => {
-                const dateObj = new Date(e.target.value);
-                const day = String(dateObj.getDate()).padStart(2, '0');
-                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-                const year = dateObj.getFullYear();
-                setPickupDate(`${day}-${month}-${year}`);
+                if (e.target.value) {
+                  const dateObj = new Date(e.target.value);
+                  const day = String(dateObj.getDate()).padStart(2, '0');
+                  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                  const year = dateObj.getFullYear();
+                  setPickupDate(`${day}-${month}-${year}`);
+                } else {
+                  setPickupDate('');
+                }
               }}
             />
           </div>
@@ -131,19 +134,19 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
       </div>
 
       <div className="mt-3 print:mt-1">
-        <div className="flex flex-col sm:flex-row items-start justify-between gap-4 print:gap-1">
-          <div className="flex flex-col items-start gap-1 print:gap-0.5 w-full sm:w-auto">
+        <div className="flex flex-row items-start justify-between gap-4 print:gap-2">
+          <div className="flex flex-col items-start gap-1 print:gap-0.5">
             <img src={aba} alt="ABA" className="h-32 sm:h-48 print:h-32 w-auto" />
             <p className="text-xs print:text-[9px] font-medium text-left">អគុណសំរាប់ការគាំទ្រ</p>
           </div>
-          <div className="text-right text-xs print:text-[9px] font-mono w-full sm:w-auto">
+          <div className="text-right text-xs print:text-[9px] font-mono min-w-[280px] print:min-w-[250px]">
             <div className="flex justify-between gap-4 print:gap-2 mb-1 font-bold border-b-2 border-black pb-1">
               <span className="whitespace-nowrap">សរុបៗ / Sub Total:</span>
               <span>${total.toFixed(2)}</span>
             </div>
             <div className="flex justify-between gap-4 print:gap-2 mb-1">
               <label className="whitespace-nowrap">ដឹកជញ្ជូន / Delivery Fee:</label>
-              <div className="flex items-center">
+              <div className="flex items-center justify-end">
                 <span>$</span>
                 <span className="hidden print:inline text-right w-12">{(Number(deliveryFee) || 0).toFixed(2)}</span>
                 <input 
