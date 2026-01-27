@@ -10,7 +10,12 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
   const subTotal = total + deliveryFeeNum;
 
   return (
-    <div ref={ref} className="bg-white w-full max-w-2xl mx-auto p-2 sm:p-4 print:p-2 text-sm relative">
+    <div ref={ref} className="bg-white w-full max-w-2xl mx-auto p-2 sm:p-4 print:p-2 text-sm relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-10 print:opacity-15 select-none">
+        <img src={logo} alt="Riza Watermark" className="max-w-[70%] sm:max-w-[55%] print:max-w-[60%] rotate-[-8deg]" />
+      </div>
+
+      <div className="relative z-10">
       <div className="flex flex-col sm:flex-row items-center justify-between mb-2 print:mb-1.5 gap-2 sm:gap-4 print:gap-2">
         <img src={logo} alt="Riza Logo" className="h-20 sm:h-32 print:h-20 w-auto" />
         <div className="text-center flex-1">
@@ -202,6 +207,8 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
           className="block max-w-[160px] w-full mx-auto bg-brand text-white px-3 py-1 rounded hover:bg-pink-600 text-xs">
           + Add Item
         </button>
+      </div>
+
       </div>
 
     </div>
