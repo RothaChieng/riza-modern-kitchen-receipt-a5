@@ -10,7 +10,7 @@ export default function PrintButton({ targetRef, onAfterPrint }) {
   return (
     <button
       onClick={handlePrint}
-      className="w-full max-w-2xl mx-auto block bg-brand text-white py-2 rounded">
+      className="w-full max-w-2xl mx-auto block bg-brand text-white py-3 px-4 rounded text-base font-medium cursor-pointer touch-manipulation active:bg-pink-700">
       Print / Save as PDF
     </button>
   );
