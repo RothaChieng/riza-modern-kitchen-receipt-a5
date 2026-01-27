@@ -11,7 +11,7 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
 
   return (
     <div ref={ref} className="bg-white w-full max-w-2xl mx-auto p-2 sm:p-4 print:p-2 text-sm relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-10 print:opacity-15 select-none">
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-5 print:opacity-8 select-none">
         <img src={logo} alt="Riza Watermark" className="max-w-[70%] sm:max-w-[55%] print:max-w-[60%] rotate-[-8deg]" />
       </div>
 
