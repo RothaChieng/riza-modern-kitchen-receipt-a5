@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import logo from "../assets/riza-logo.png";
+import abaLogo from "../assets/ABA-Logo.png";
 import aba from "../assets/aba.jpg";
 import l1 from "../assets/L1.png";
 
@@ -10,20 +11,20 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
 
   return (
     <div ref={ref} className="bg-white w-full max-w-2xl mx-auto p-2 sm:p-4 print:p-2 text-sm relative">
-      <div className="flex items-start justify-between mb-2 print:mb-1 gap-2">
-        <img src={logo} alt="Riza Logo" className="h-14 sm:h-20 print:h-14 w-auto flex-shrink-0" />
-        <div className="text-center flex-1 px-2">
-          <h1 className="font-bold text-brand text-lg sm:text-2xl print:text-lg leading-tight">
+      <div className="flex flex-col sm:flex-row items-center justify-between mb-2 print:mb-1.5 gap-2 sm:gap-4 print:gap-2">
+        <img src={logo} alt="Riza Logo" className="h-20 sm:h-32 print:h-20 w-auto" />
+        <div className="text-center flex-1">
+          <h1 className="font-bold text-brand text-2xl sm:text-4xl print:text-2xl print:mb-0 leading-tight">
             Riza Modern Kitchen
           </h1>
-          <p className="text-[8px] sm:text-[9px] print:text-[7px] mt-0.5 leading-tight">Selling all kind of electric kitchen appliances.</p>
-          <p className="text-[8px] sm:text-[9px] print:text-[7px] leading-tight">មានលក់សម្ភារៈផ្ទះបាយអគ្គិសនីទំនើបគ្រប់ប្រភេទ.</p>
+          <p className="text-[10px] sm:text-xs print:text-[9px] mt-1 print:mt-0.5 leading-relaxed">Selling all kind of electric kitchen appliances.</p>
+          <p className="text-[10px] sm:text-xs print:text-[9px] leading-relaxed">មានលក់សម្ភារៈផ្ទះបាយអគ្គិសនីទំនើបគ្រប់ប្រភេទ.</p>
         </div>
-        <img src={l1} alt="L1" className="h-14 sm:h-20 print:h-14 w-auto flex-shrink-0" />
+        <img src={l1} alt="L1" className="h-20 sm:h-32 print:h-20 w-auto" />
       </div>
 
-      <div className="flex flex-col sm:flex-row mb-2 print:mb-1 gap-2 sm:gap-0 print:flex-row">
-        <div className="space-y-1 print:space-y-0.5 text-xs w-full sm:w-1/3 print:w-1/3">
+      <div className="flex flex-col sm:flex-row mb-3 print:mb-1.5 gap-2 sm:gap-0">
+        <div className="space-y-1 print:space-y-0.5 text-xs w-full sm:w-1/3">
           <div className="flex items-center gap-1">
             <label className="text-[10px] print:text-[9px] whitespace-nowrap min-w-max">ឈ្មោះអតិថិជន:</label>
             <span className="hidden print:inline text-[10px] print:text-[9px]">{customerName || '____________'}</span>
@@ -61,26 +62,23 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
             <input 
               type="date" 
               className="border p-0.5 rounded w-full sm:w-32 text-[10px] print:hidden flex-1" 
+              value={pickupDate}
               onChange={(e) => {
-                if (e.target.value) {
-                  const dateObj = new Date(e.target.value);
-                  const day = String(dateObj.getDate()).padStart(2, '0');
-                  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-                  const year = dateObj.getFullYear();
-                  setPickupDate(`${day}-${month}-${year}`);
-                } else {
-                  setPickupDate('');
-                }
+                const dateObj = new Date(e.target.value);
+                const day = String(dateObj.getDate()).padStart(2, '0');
+                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                const year = dateObj.getFullYear();
+                setPickupDate(`${day}-${month}-${year}`);
               }}
             />
           </div>
         </div>
-        <div className="flex-1 flex flex-row items-start justify-between gap-2 pl-0 sm:pl-16 print:pl-12 pr-0">
+        <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pl-0 sm:pl-16 print:pl-12 pr-0 sm:pr-4">
           <div className="text-lg sm:text-xl print:text-base font-bold text-brand underline leading-tight">
             <div>វិក័យប័ត្រ</div>
             <div>Invoice</div>
           </div>
-          <div className="text-xs print:text-[9px] text-right font-mono leading-relaxed">
+          <div className="text-xs print:text-[9px] text-right font-mono leading-relaxed w-full sm:w-auto">
             <div>097 7777 662</div>
             <div>096 4676 666</div>
             <div className="mt-1 pt-1 border-t border-black font-bold">
@@ -97,7 +95,7 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
       </div>
 
       <div className="overflow-x-auto">
-      <table className="w-full table-fixed border-collapse border border-black text-sm print:text-[8px] min-w-[500px] print:min-w-full">
+      <table className="w-full table-fixed border-collapse border border-black text-sm min-w-[500px]">
         <thead>
           <tr className="bg-gray-50 print:bg-gray-100">
             <th className="w-[8%] text-center px-2 py-1 print:px-1 print:py-0.5 text-[10px] print:text-[8px] border border-black font-bold">ល.រ / No</th>
@@ -133,20 +131,23 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
       </table>
       </div>
 
-      <div className="mt-3 print:mt-1">
-        <div className="flex flex-row items-start justify-between gap-4 print:gap-2">
-          <div className="flex flex-col items-start gap-1 print:gap-0.5">
-            <img src={aba} alt="ABA" className="h-32 sm:h-48 print:h-32 w-auto" />
-            <p className="text-xs print:text-[9px] font-medium text-left">អគុណសំរាប់ការគាំទ្រ</p>
+      <div className="mt-3 print:mt-1.5">
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-4 print:gap-2">
+          <div className="flex flex-col items-start gap-1 print:gap-0.5 w-full sm:w-auto">
+            <div className="flex items-center gap-2 print:gap-1">
+              <img src={abaLogo} alt="ABA Logo" className="h-24 sm:h-40 print:h-32 w-auto" />
+              <img src={aba} alt="ABA" className="h-24 sm:h-40 print:h-32 w-auto" />
+            </div>
+            <p className="text-xs print:text-[9px] font-medium text-left ml-24 sm:ml-44 print:ml-16">អគុណសំរាប់ការគាំទ្រ</p>
           </div>
-          <div className="text-right text-xs print:text-[9px] font-mono min-w-[280px] print:min-w-[250px]">
+          <div className="text-right text-xs print:text-[9px] font-mono w-full sm:w-auto">
             <div className="flex justify-between gap-4 print:gap-2 mb-1 font-bold border-b-2 border-black pb-1">
               <span className="whitespace-nowrap">សរុបៗ / Sub Total:</span>
               <span>${total.toFixed(2)}</span>
             </div>
             <div className="flex justify-between gap-4 print:gap-2 mb-1">
               <label className="whitespace-nowrap">ដឹកជញ្ជូន / Delivery Fee:</label>
-              <div className="flex items-center justify-end">
+              <div className="flex items-center">
                 <span>$</span>
                 <span className="hidden print:inline text-right w-12">{(Number(deliveryFee) || 0).toFixed(2)}</span>
                 <input 
@@ -201,6 +202,12 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
           className="block max-w-[160px] w-full mx-auto bg-brand text-white px-3 py-1 rounded hover:bg-pink-600 text-xs">
           + Add Item
         </button>
+      </div>
+
+      <div className="hidden print:block mt-4 pt-2 border-t border-black text-center text-[9px] leading-relaxed">
+        <p className="font-semibold">Riza Modern Kitchen</p>
+        <p>No.27 Borey Peng Huot Beoung Snor Chbar Om Pov, Phnom Penh, Cambodia</p>
+        <p className="mt-1">Thank you for your support!</p>
       </div>
 
     </div>
