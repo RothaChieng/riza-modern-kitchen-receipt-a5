@@ -4,6 +4,20 @@ export default function PrintButton({ targetRef, onAfterPrint }) {
   const handlePrint = useReactToPrint({
     content: () => targetRef.current,
     documentTitle: " ", // blank title avoids about:srcdoc label in print header
+    pageStyle: `
+      @page { size: A5; margin: 4mm; }
+      @media print {
+        html, body {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        .receipt-print-root * {
+          font-size: 88% !important;
+          line-height: 1.15 !important;
+        }
+      }
+    `,
     onAfterPrint,
   });
 

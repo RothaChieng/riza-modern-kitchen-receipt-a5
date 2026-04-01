@@ -10,6 +10,7 @@ export default function App() {
   const [currentItemPrice, setCurrentItemPrice] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [customerAddress, setCustomerAddress] = useState("");
   
   // Get current date in DD-MM-YYYY format
   const getTodayDate = () => {
@@ -50,6 +51,7 @@ export default function App() {
         date: new Date().toISOString(),
         customerName,
         phoneNumber,
+        customerAddress,
         orderDate,
         pickupDate,
         items,
@@ -96,6 +98,8 @@ export default function App() {
           setCustomerName={setCustomerName}
           phoneNumber={phoneNumber}
           setPhoneNumber={setPhoneNumber}
+          customerAddress={customerAddress}
+          setCustomerAddress={setCustomerAddress}
           orderDate={orderDate}
           currentItemName={currentItemName}
           setCurrentItemName={setCurrentItemName}

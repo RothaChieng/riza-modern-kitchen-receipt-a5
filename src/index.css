@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 @page {
-  size: A4;
-  margin: 10mm;
+  size: A5;
+  margin: 6mm;
 }
