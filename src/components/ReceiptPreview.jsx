@@ -58,8 +58,7 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
             <label className="text-[10px] print:text-[9px] whitespace-nowrap min-w-max">កាត់ថ្ងៃទី:</label>
             <span className="hidden print:inline text-[10px] print:text-[9px]">{orderDate || '____________'}</span>
             <input 
-              type="text" 
-              placeholder="DD-MM-YYYY"
+              type="date"
               className="border p-0.5 rounded w-full sm:w-32 text-[10px] print:hidden flex-1" 
               value={orderDate}
               onChange={(e) => setOrderDate(e.target.value)}
@@ -72,13 +71,7 @@ const ReceiptPreview = forwardRef(({ data, items, addItem, updateItem, customerN
               type="date" 
               className="border p-0.5 rounded w-full sm:w-32 text-[10px] print:hidden flex-1" 
               value={pickupDate}
-              onChange={(e) => {
-                const dateObj = new Date(e.target.value);
-                const day = String(dateObj.getDate()).padStart(2, '0');
-                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-                const year = dateObj.getFullYear();
-                setPickupDate(`${day}-${month}-${year}`);
-              }}
+              onChange={(e) => setPickupDate(e.target.value)}
             />
           </div>
         </div>

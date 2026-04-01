@@ -12,13 +12,10 @@ export default function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
   
-  // Get current date in DD-MM-YYYY format
+  // Get current date in YYYY-MM-DD format for native date inputs.
   const getTodayDate = () => {
     const today = new Date();
-    const day = String(today.getDate()).padStart(2, '0');
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const year = today.getFullYear();
-    return `${day}-${month}-${year}`;
+    return today.toISOString().split("T")[0];
   };
   
   const [orderDate, setOrderDate] = useState(getTodayDate());
